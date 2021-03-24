@@ -1,0 +1,97 @@
+<div  class="evaluation  container">
+  <div>
+    <br>
+    <form ngNativeValidate>
+      <table class="container">
+      <tbody>
+        <tr>
+          <label  class="form-label">Applicant Name : </label>
+        </tr>
+          <tr class="form-group">
+              <td class="input-group input-group-lg" >
+                <input id="name" type="text"  #nam name="name" class="form-control" required  placeholder="Enter Applicant Name" (change)="value(nam.value,ename.value,techno1.value)" style="height:60px"/>
+              </td>
+            </tr>
+            <br>
+            <tr>
+              <label class="form-label" >Evaluator Name: </label>
+            </tr>
+            <tr class="form-group" >
+              <td class="input-group input-group-lg" >
+                <input type="text"  name="evalname" class="form-control" id="evalname" placeholder="Enter Evaluator Name " #ename (change)="value(nam.value,ename.value,techno1.value)" required style="height:60px"/>
+              </td>
+            </tr>
+            <br>
+            <tr>
+              <label class="form-label"  >Technology : </label>
+            </tr>
+            <tr class="form-group">
+              <td class="input-group input-group-xxlg " >
+                <select name="tech_area"  #techno1 style="height:60px;width:1500px" (change)="techno(techno1.value)"  required  (change)="value(nam.value,ename.value,techno1.value)" class="form-control-lg">
+                  <ng-container *ngFor="let tech of TEMPTECHNAME">
+                    <option value="{{tech}}">{{tech}}</option>
+                  </ng-container>
+                </select>
+              </td>
+            </tr>
+            <br>
+            <tr>
+              <label class="form-label" >Date : </label>
+            </tr>
+            <tr class="form-group">
+              <td  class="input-group input-group-lg">
+              <input style="height:60px" type="text" value="{{date | async | date : 'dd/MM/YYYY'}}" class="form-control" ></td>
+              </tr>
+              <br>
+            </tbody>
+          </table>
+          <ng-template [ngIf]="displaying">
+            <table class="container table table-bordered" border="2px">
+              <tr>
+                <th>Skills</th>
+                <th>Score</th>
+              </tr>
+              <tr *ngFor="let tech of TEMPSKILL">
+                <td>{{ tech | uppercase }}</td>
+                <!--td><input type="text"   class="form-control"  placeholder="Enter Score" #rnmin="0" max="10" step="1"  (change)="scores(nam.value,ename.value,techno1.value,tech,rn.value)"  required style="height:60px"/></td-->
+                <td><input type="text"   class="form-control" value="0" placeholder="Enter Score" #rn min="0" max="10" step="1"  (change)="scores(nam.value,ename.value,techno1.value,tech,rn.value)"  style="height:60px"/></td>
+             </tr>
+          </table>
+        </ng-template>
+        <ng-template [ngIf]="!allow">
+          <div class="mb-3 text-center">
+            <button  mdbBtn  rounded="true" color="primary" type="submit"  class="btn btn-primary mb-3" data-toggle="modal" data-target="#basicExample">Submit</button>
+          </div>
+        </ng-template>
+          <ng-template [ngIf]="allow">
+            <div class="mb-3 text-center">
+            <button  mdbBtn  rounded="true" color="primary" type="submit"  (click)="frame.show()" (click)="display(nam.value,ename.value,techno1.value)" class="btn btn-primary mb-3" data-toggle="modal" data-target="#basicExample">Submit</button>
+          </div>
+            <div mdbModal #frame="mdbModal" class="modal top fade" id="frameModalTop" tabindex="-1"  role="dialog"  data-toggle="modal" data-target="#myModal" aria-labelledby="myModalLabel"aria-hidden="true">
+              <div class="modal-dialog modal-notify modal-primary" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p></p>
+                    <button type="button" class="close hide" data-dismiss="modal" aria-label="Close" >
+                      <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                  </div>
+            
+                  <div class="modal-body">
+                    <div class="text-center">
+                      <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+                      <p>Data saved Sussessfully</p>
+                    </div>
+                  </div>
+            
+                  <div class="modal-footer justify-content-center">
+                    <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" routerLink="/allevaluation" routerLinkActive="selectedLink" mdbWavesEffect (click)="frame.hide()">Ok</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+  </form>
+  </div>
+  </div>
+

@@ -1,0 +1,60 @@
+<div  class="template  container">
+  <form ngNativeValidate>
+    <table class="container">
+    <tbody>
+        <tr class="form-group">
+          <td>Technology : </td>
+        </tr>
+        <tr>
+            <td class="input-group input-group-lg">
+            <input id="technology" type="text"  name="techarea" class="form-control" required  #techno placeholder="Enter Technology" (change)= "value(ti.value,techno.value)" style="height:70px;"/>
+            </td>
+          </tr>
+          <br>
+        <tr class="form-group" >
+          <td>Skill :</td>
+        </tr>
+        <tr>
+            <td class="input-group input-group-lg" >
+              <input type="text"  name="skillname" class="form-control" id="skillname" placeholder="Enter Skill" #ti required (change)= "value(ti.value,techno.value)" style="height:70px"/>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+        <ng-template [ngIf]="!allow">
+        <div class="mb-3 text-center">
+          <button  mdbBtn  rounded="true" color="primary" type="submit"   (click)="add(ti.value,techno.value)" class="btn btn-primary mb-3" data-toggle="modal" data-target="#basicExample">Submit</button>
+        </div>
+        </ng-template>
+
+
+        <ng-template [ngIf]="allow">
+          <div class="mb-3 text-center">
+          <button  mdbBtn  rounded="true" color="primary" type="submit"  (click)="frame.show()" (click)="add(ti.value,techno.value)" class="btn btn-primary mb-3" data-toggle="modal" data-target="#basicExample">Add Technology </button>
+        </div>
+          <div mdbModal #frame="mdbModal" class="modal top fade" id="frameModalTop" tabindex="-1"  role="dialog"  data-toggle="modal" data-target="#myModal" aria-labelledby="myModalLabel"aria-hidden="true">
+          <div class="modal-dialog modal-notify modal-primary" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p></p>
+                <button type="button" class="close hide" data-dismiss="modal" aria-label="Close" >
+                  <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+              </div>
+        
+              <div class="modal-body">
+                <div class="text-center">
+                  <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+                  <p>Technology and Skills added Sussessfully</p>
+                </div>
+              </div>
+        
+              <div class="modal-footer justify-content-center">
+                <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" routerLink="/template" routerLinkActive="selectedLink" mdbWavesEffect (click)="frame.hide()">Ok</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+</form>
+</div>

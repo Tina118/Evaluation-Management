@@ -1,0 +1,28 @@
+<ng-template [ngIf]="!dataAvailable">
+  <div class="container">
+    <p style="text-align:center;font-size:40px;margin:100px 100px"><i>No Data Available to Display</i></p>
+  </div>
+</ng-template>
+<ng-template [ngIf]="dataAvailable">
+<div class = "evaluation container table-responsive-lg ">
+  <br><br>
+<table class="table table-striped ">
+    <thead>
+      <tr>
+        <th>Sr.No</th>
+        <th>APPLICANT</th>
+        <th>EVALUATOR</th>
+        <th>TECHNOLOGY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let eval of unique,index as idx">
+        <td>{{idx+1}}</td>
+        <td><a style="text-decoration: underline;" (click)="submit(eval.APPLICANTNAME)">{{eval.APPLICANTNAME | uppercase}}</a></td>
+        <td>{{eval.EVALUATORNAME | uppercase}}</td>
+        <td>{{eval.EVALNAME | uppercase}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</ng-template>

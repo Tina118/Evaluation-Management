@@ -1,0 +1,28 @@
+table{
+  font-size : 24px;
+  width: 100%;
+  overflow-x: auto; 
+  table-layout: fixed;
+}
+
+.table tr{
+  border : 1px solid grey;
+}
+
+th,td{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+.control.required:after { 
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top:2px;
+}
+
+
+
